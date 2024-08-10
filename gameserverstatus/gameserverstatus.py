@@ -300,8 +300,6 @@ class GameServerStatus(commands.Cog):
                     s.append(f"{hours} часов")
                     minutes %= 60
 
-
-                s.append(f"Минуты: {minutes}")
                 if minutes == 1 or minutes % 10 == 1:
                     s.append(f"{minutes} минута")
                 elif minutes < 1 and minutes > 5:
