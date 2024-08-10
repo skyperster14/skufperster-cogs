@@ -270,7 +270,7 @@ class GameServerStatus(commands.Cog):
                 elif rlevel == SS14_RUN_LEVEL_POSTGAME:
                     status = "Раунд завершён"
 
-                embed.add_field(name="Status", value=status)
+                embed.add_field(name="Статус", value=status)
 
             starttimestr = json.get("round_start_time")
             if starttimestr:
