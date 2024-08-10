@@ -309,7 +309,7 @@ class GameServerStatus(commands.Cog):
                 else:
                     s.append(f"{minutes} минут")
 
-                embed.add_field(name="Длительность раунда", value=", ".join(s))
+                embed.add_field(name="Время с начала раунда", value=", ".join(s))
 
                 embed.add_field(name="№ Раунда", value=round_id)
 
