@@ -238,8 +238,9 @@ class GameServerStatus(commands.Cog):
         longname = dat.get("name")
         addr = get_ss14_status_url(cfgurl)
         log.debug(f"SS14 addr is {addr}")
+        serverip = "ss14://5.189.196.198:1212" # skyperster
 
-        embed.set_footer(text=f"{cfgname}: {"ss14://5.189.196.198:1212"}") # not cfgurl because the bot is hosted on the same machine as the server
+        embed.set_footer(text=f"{cfgname}: {serverip}") # not cfgurl because the bot is hosted on the same machine as the server
         embed.title = longname
 
         async with aiohttp.ClientSession() as session:
