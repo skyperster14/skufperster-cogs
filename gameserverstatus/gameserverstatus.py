@@ -256,18 +256,18 @@ class GameServerStatus(commands.Cog):
             if name:
                 embed.title = name
 
-            embed.add_field(name="Players Online", value=f"{count}/{countmax}")
+            embed.add_field(name="Количество игроков", value=f"{count}/{countmax}")
 
             rlevel = json.get("run_level")
             if rlevel is not None:
-                status = "Unknown"
+                status = "Неизвестно"
 
                 if rlevel == SS14_RUN_LEVEL_PREGAME:
-                    status = "Pre game lobby"
+                    status = "Лобби"
                 elif rlevel == SS14_RUN_LEVEL_GAME:
-                    status = "In game"
+                    status = "В игре"
                 elif rlevel == SS14_RUN_LEVEL_POSTGAME:
-                    status = "Post game"
+                    status = "Раунд завершён"
 
                 embed.add_field(name="Status", value=status)
 
@@ -276,24 +276,48 @@ class GameServerStatus(commands.Cog):
                 starttime = dateutil.parser.isoparse(starttimestr)
                 delta = datetime.now(timezone.utc) - starttime
                 s = []
-                if delta.days > 0:
-                    s.append(f"{delta.days} days")
+                if delta.days == 1 or delta.days % 10 == 1:
+                    s.append(f"{delta.days} день")
+                elif delta.days < 1 and delta.days > 5:
+                    s.append(f"{delta.days} дня")
+                elif delta.days % 10 == 2 or delta.days % 10 == 3 or delta.days % 10 == 4:
+                    s.append(f"{delta.days} дня")
+                else:
+                    s.append(f"{delta.days} дней")
 
                 minutes = delta.seconds // 60
                 hours = minutes // 60
-                if hours > 0:
-                    s.append(f"{hours} hours")
+                if hours == 1 or hours % 10 == 1:
+                    s.append(f"{hours} час")
+                    minutes %= 60
+                elif hours < 1 and hours > 5:
+                    s.append(f"{hours} часа")
+                    minutes %= 60
+                elif hours % 10 == 2 or hours % 10 == 3 or hours % 10 == 4:
+                    s.append(f"{hours} часа")
+                    minutes %= 60
+                else:
+                    s.append(f"{hours} часов")
                     minutes %= 60
 
-                s.append(f"{minutes} minutes")
 
-                embed.add_field(name="Round length", value=", ".join(s))
+                s.append(f"Минуты: {minutes}")
+                if minutes == 1 or minutes % 10 == 1:
+                    s.append(f"{minutes} минута")
+                elif minutes < 1 and minutes > 5:
+                    s.append(f"{minutes} минуты")
+                elif minutes % 10 == 2 or minutes % 10 == 3 or minutes % 10 == 4:
+                    s.append(f"{minutes} минуты")
+                else:
+                    s.append(f"{minutes} минут")
 
-                embed.add_field(name="Round ID", value=round_id)
+                embed.add_field(name="Длительность раунда", value=", ".join(s))
 
-                embed.add_field(name="Map", value=gamemap)
+                embed.add_field(name="№ Раунда", value=round_id)
 
-                embed.add_field(name="Preset", value=preset)
+                embed.add_field(name="Карта", value=gamemap)
+
+                embed.add_field(name="Режим", value=preset)
 
     async def do_status_ss13(self, ctx: Messageable, name: str, dat: Dict[str, str], embed: Embed) -> None:
         cfgurl = dat["address"]
