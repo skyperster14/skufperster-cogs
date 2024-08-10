@@ -280,7 +280,7 @@ class GameServerStatus(commands.Cog):
                     s.append(f"{delta.days} день")
                 elif delta.days < 1 and delta.days > 5:
                     s.append(f"{delta.days} дня")
-                elif delta.days % 10 == 2 or delta.days % 10 == 3 or delta.days % 10 == 4:
+                elif (delta.days % 10 == 2 or delta.days % 10 == 3 or delta.days % 10 == 4) and delta.days != 11:
                     s.append(f"{delta.days} дня")
                 else:
                     s.append(f"{delta.days} дней")
@@ -293,7 +293,7 @@ class GameServerStatus(commands.Cog):
                 elif hours < 1 and hours > 5:
                     s.append(f"{hours} часа")
                     minutes %= 60
-                elif hours % 10 == 2 or hours % 10 == 3 or hours % 10 == 4:
+                elif (hours % 10 == 2 or hours % 10 == 3 or hours % 10 == 4) and hours != 11:
                     s.append(f"{hours} часа")
                     minutes %= 60
                 else:
@@ -304,7 +304,7 @@ class GameServerStatus(commands.Cog):
                     s.append(f"{minutes} минута")
                 elif minutes < 1 and minutes > 5:
                     s.append(f"{minutes} минуты")
-                elif minutes % 10 == 2 or minutes % 10 == 3 or minutes % 10 == 4:
+                elif (minutes % 10 == 2 or minutes % 10 == 3 or minutes % 10 == 4) and minutes != 11:
                     s.append(f"{minutes} минуты")
                 else:
                     s.append(f"{minutes} минут")
