@@ -239,7 +239,7 @@ class GameServerStatus(commands.Cog):
         addr = get_ss14_status_url(cfgurl)
         log.debug(f"SS14 addr is {addr}")
 
-        embed.set_footer(text=f"{cfgname}: {cfgurl}")
+        embed.set_footer(text=f"{cfgname}: {"ss14://5.189.196.198:1212"}") # not cfgurl because the bot is hosted on the same machine as the server
         embed.title = longname
 
         async with aiohttp.ClientSession() as session:
