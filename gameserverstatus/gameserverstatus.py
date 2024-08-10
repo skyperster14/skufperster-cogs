@@ -311,7 +311,7 @@ class GameServerStatus(commands.Cog):
 
                 embed.add_field(name="Время с начала раунда", value=", ".join(s))
 
-                embed.add_field(name="№ Раунда", value=round_id)
+                embed.add_field(name="Номер раунда", value=round_id)
 
                 embed.add_field(name="Карта", value=gamemap)
 
